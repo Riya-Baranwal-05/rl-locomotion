@@ -30,16 +30,18 @@ giving states as inputs and outputs are the actions.
 TODO
 
 ## What i learned
-TODO
+- Training for 100,000 time steps resulted in -1253 total reward i.e. negative , so penalties are dominating . 
+- On flipping, the termination is still set to false by default condition.
 
 ## Limitations
 - Training is happening in simulation so the training might not work on real hardware. 
 - In Simulations even , training steps are expensive on computation.
-- RL is noisy , with same settings results can be different.
+- RL is noisy , with same settings results can be different. Running same model(trained with 100,000 timesteps) three times resulted in rewards (-1253,-515,-279).
+- Fallen penalty never gets added to the modified reward as default condition for termination is never satisfied. (The z-coordinate of the torso (the height) is not in the closed interval given by the healthy_z_range argument (default is [0.2,1.0]))
 
 ## References
 
 - Schulman, J., Wolski, F., Dhariwal, P., Radford, A., & Klimov, O. (2017). Proximal Policy Optimization Algorithms. arXiv:1707.06347
 - MuJoCo (Todorov et al., 2012)
-- Raffin, A., Hill, A., Gleave, A., Kanervisto, A., Ernestus, A., & Dormann, N. (2021). ,Stable-Baselines3: Reliable Reinforcement Learning Implementations . Journal of Machine Learning Research . (https://jmlr.org/papers/v22/20-1364.html)
+- Raffin, A., Hill, A., Gleave, A., Kanervisto, A., Ernestus, A., & Dormann, N. (2021). Stable-Baselines3: Reliable Reinforcement Learning Implementations . Journal of Machine Learning Research . (https://jmlr.org/papers/v22/20-1364.html)
 
