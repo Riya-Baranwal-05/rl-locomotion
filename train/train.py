@@ -5,11 +5,13 @@ for training. MlpPolicy is actually Multi Layer Perceptron neural
  network. Later i train the model using .learn() and save it in results.
 
 """
-from envs import custom_wrapper
+import sys
+sys.path.append(".")
+from envs.custom_wrapper import CustomAntWrapper
 import gymnasium as gym
 from stable_baselines3 import PPO
 
-env = custom_wrapper.CustomAntWrapper(gym.make("Ant-v5"))
+env = CustomAntWrapper(gym.make("Ant-v5"))
 model = PPO(policy="MlpPolicy",env=env)
 model.learn(total_timesteps=100000)
 model.save("results/ppo_ant")
