@@ -14,7 +14,7 @@ class CustomAntWrapper(gymnasium.Wrapper):
         forward_velocity = info["x_velocity"]
         energy_penalty = np.sum(np.abs(action))
         fallen_penalty = 10 if  terminated else 0
-        reward = reward + forward_velocity - energy_penalty - fallen_penalty
+        reward = reward - 0.1*energy_penalty - fallen_penalty
 
         return observation, reward,terminated,truncated,info
 
