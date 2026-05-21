@@ -27,7 +27,20 @@ giving states as inputs and outputs are the actions.
 - README.md
 
 ## How to Run
-TODO
+
+**Train:**
+**Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+```bash
+python -m train.train
+```
+
+**Evaluate:**
+```bash
+python -m train.eval
+```
 
 ## What i learned
 - Training for 100,000 time steps resulted in -1253 total reward i.e. negative , so penalties are dominating . 
