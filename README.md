@@ -1,5 +1,5 @@
 ## DEMO
-<!--GIF-->
+![Ant Demo](ant_demo.gif)
 
 # RL-LOCOMOTION AGENT TRAINING IN MUJOCO
 This project will train MuJoCo's simulated ant to walk learning through PPO.
@@ -45,11 +45,15 @@ python -m train.eval
 ## What i learned
 - Training for 100,000 time steps resulted in -1253 total reward i.e. negative , so penalties are dominating . 
 - On flipping, the termination is still set to false by default condition.
-
+- During evaluation, understood that RL results can be highly variable and noisy. For the same hyperparameter and training 
+settings , different run of same model can produce different results.
+- It is important to evaluate trained model across multiple runs to better estimate policy performance rather than depending on 
+one single experiment.
+  
 ## Limitations
 - Training is happening in simulation so the training might not work on real hardware. 
 - In Simulations even , training steps are expensive on computation.
-- RL is noisy , with same settings results can be different. Running same model(trained with 100,000 timesteps) three times resulted in rewards (-1253,-515,-279).
+- RL is noisy , with same settings results can be different. Running same model(trained with 100,000 timesteps) three times resulted in    rewards (-1253,-515,-279).
 - Fallen penalty never gets added to the modified reward as default condition for termination is never satisfied. (The z-coordinate of the torso (the height) is not in the closed interval given by the healthy_z_range argument (default is [0.2,1.0]))
 
 ## References
