@@ -32,6 +32,39 @@ The custom reward wrapper adds an additional energy penalty
 - requirements.txt
 - README.md
 
+## Ablation Study
+
+| Model | Avg Reward | Min | Max |
+|-------|-----------|-----|-----|
+| Custom reward (0.1 energy penalty) | ~2600 | 1823 | 2896 |
+| Default reward (no wrapper) | ~838 | 126 | 1355 |
+
+**Note:** Training curves use different reward scales and cannot be 
+directly compared. Evaluation results show custom reward produced 
+significantly higher and more stable performance (+2600 avg vs +838 avg).
+Custom reward produced higher average performance (+2600 vs +838) 
+and more consistent results — all 5 runs survived the full 1000 steps,
+while default reward had runs terminate early from falling.
+
+## Training Curves
+
+**Custom Reward:**
+![Custom](notebooks/training_curve.png)
+
+**Default Reward:**
+![Default](notebooks/training_curve_default.png)
+
+## Hyperparameters
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| learning_rate | 0.0003 | Controls how fast weights update |
+| n_steps | 2048 | Steps collected before each update |
+| batch_size | 64 | Samples per training update |
+| total_timesteps | 1000000 | Total ant steps during training | 
+
+
+
 ## How to Run
 
 **Train:**
