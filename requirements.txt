@@ -4,3 +4,4 @@ gymnasium
 matplotlib
 torch
 wandb
+tensorboard

@@ -12,6 +12,6 @@ import gymnasium as gym
 from stable_baselines3 import PPO
 
 env = CustomAntWrapper(gym.make("Ant-v5"))
-model = PPO(policy="MlpPolicy",env=env)
-model.learn(total_timesteps=100000)
-model.save("results/ppo_ant")
+model = PPO(policy="MlpPolicy",env=env,verbose=1,tensorboard_log="logs/")
+model.learn(total_timesteps=1000000)
+model.save("results/ppo_ant_v2")

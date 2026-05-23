@@ -2,13 +2,17 @@
 ![Ant Demo](ant_demo.gif)
 
 # RL-LOCOMOTION AGENT TRAINING IN MUJOCO
-This project will train MuJoCo's simulated ant to walk learning through PPO.
+This project trains MuJoCo's simulated ant to walk learning through PPO.
 
-# What does this project does?
-It trains the ant to walk. It uses forward velocity and stability as reward. 
-For penalty it uses falling and energy efficiency. Actions are the joint angles/torques.
-The policy is trained using neural network
-giving states as inputs and outputs are the actions.
+# What does this project do?
+It trains MuJoCo in-built ant - 3D quadruped robot to 
+walk in simulated environment.From designing custom_wrapper 
+to modify reward, to Using, Reinforcement Learning 
+model and Proximal Policy Optimization algorithm to train.
+The custom reward wrapper adds an additional energy penalty 
+(0.1 × joint torques) on top of MuJoCo's default reward.
+
+
 
 # Project Structure
 - envs/
@@ -22,7 +26,9 @@ giving states as inputs and outputs are the actions.
 - configs/
     --- ant.yaml #hyperparameters
     --- cheetah.yaml 
-- results/ #saved models,training curve
+- results/ #saved models
+- notebooks/ 
+    --- plot_results.py 
 - requirements.txt
 - README.md
 
@@ -49,12 +55,19 @@ python -m train.eval
 settings , different run of same model can produce different results.
 - It is important to evaluate trained model across multiple runs to better estimate policy performance rather than depending on 
 one single experiment.
+- In reward modification, forward velocity was included in the default, so it was counted twice.
+- MuJoCo already penalizes energy via ctrl_cost. So, in reward penalty was dominating. Adding the weighted energy penalty improved the results so much.
+- After fixing double-counted reward, results improved dramatically:
+  - Before fix (100k steps): -1253, -515, -279
+  - After fix (1M steps): +2763, +2829, +2753, +2896, +1823
+
   
 ## Limitations
 - Training is happening in simulation so the training might not work on real hardware. 
 - In Simulations even , training steps are expensive on computation.
-- RL is noisy , with same settings results can be different. Running same model(trained with 100,000 timesteps) three times resulted in    rewards (-1253,-515,-279).
+- RL is noisy , with same settings results can be different. Running same model(trained with 1M timesteps) five times resulted in  rewards (+2763, +2829, +2753, +2896, +1823).
 - Fallen penalty never gets added to the modified reward as default condition for termination is never satisfied. (The z-coordinate of the torso (the height) is not in the closed interval given by the healthy_z_range argument (default is [0.2,1.0]))
+
 
 ## References
 
