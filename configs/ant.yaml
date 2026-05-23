@@ -1,4 +1,5 @@
 learning_rate: 0.0003 #Controls how fast weights are updates
 n_steps: 2048 # Number of steps the ant takes before updating the weights
 batch_size: 64 # Number of samples it uses per update
-total_timesteps: 100000 # Total number of steps ant takes
+total_timesteps: 1000000 # Total number of steps ant takes
+use_custom_reward: false
