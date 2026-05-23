@@ -1,5 +1,5 @@
 ## DEMO
-![Ant Demo](ant_demo.gif)
+![Ant Demo](ant_demo_final.gif)
 
 # RL-LOCOMOTION AGENT TRAINING IN MUJOCO
 This project trains MuJoCo's simulated ant to walk learning through PPO.
