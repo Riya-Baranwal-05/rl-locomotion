@@ -6,7 +6,7 @@ Converts it to visualize PPO Ant training curve
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 import matplotlib.pyplot as plt
 
-log_dir = 'logs/PPO_1/'
+log_dir = 'logs_default/PPO_2/'
 event_acc = EventAccumulator(log_dir)
 event_acc.Reload()
 
@@ -15,7 +15,7 @@ steps = [r.step for r in rewards]
 values = [r.value for r in rewards]
 
 plt.plot(steps,values)
-plt.title('PPO Ant Training Curve')
+plt.title('PPO Ant Training Curve With Default Reward')
 plt.ylabel('Rewards')
 plt.xlabel('timesteps')
-plt.savefig("notebooks/training_curve.png")
+plt.savefig("notebooks/training_curve_default.png")
