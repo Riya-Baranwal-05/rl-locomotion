@@ -9,7 +9,7 @@ import sys
 sys.path.append(".")
 from envs.custom_wrapper import CustomAntWrapper
 import gymnasium as gym
-from stable_baselines3 import PPO
+from agents.ppo import create_ppo
 import yaml
 with open("configs/ant.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -17,14 +17,6 @@ if config["use_custom_reward"]:
     env = CustomAntWrapper(gym.make("Ant-v5"))
 else:
     env = gym.make("Ant-v5")
-model = PPO(
-    policy="MlpPolicy",
-    env=env,
-    learning_rate=config["learning_rate"],
-    n_steps=config["n_steps"],
-    batch_size=config["batch_size"],
-    verbose=1,
-    tensorboard_log="logs_default/"
-)
+model = create_ppo(env, config)
 model.learn(total_timesteps=config["total_timesteps"])
 model.save("results/ppo_ant_default")
